@@ -1,32 +1,45 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { ConfigProvider, theme } from 'antd'
+import { BrowserRouter } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
+import { Provider as ReduxProvider } from 'react-redux'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { PersistGate } from 'redux-persist/integration/react'
 
-import { Navigator } from './navigator';
+import { AuthProvider } from './contexts/AuthContext'
 
-import {ConfigProvider, theme} from 'antd';
-import QueryProvider from './services/client/query-provider';
+import { store, persistor } from './store/redux/index'
+
+import Router from './router'
+
+import Loading from './components/Loading'
+
+const themeConfig = {
+  algorithm: theme.defaultAlgorithm,
+  token: {
+    colorPrimary: '#3d7cef',
+  },
+}
+
+const reactQueryClient = new QueryClient()
 
 const App = () => {
   return (
-
-    <QueryProvider>
-      <ConfigProvider
-        theme={{
-          algorithm: theme.defaultAlgorithm,
-          token: {
-            colorPrimary: '#3d7cef',
-          },
-        }}
-      >
-        <div className="App">
-            <BrowserRouter>
-              <Navigator />
-            </BrowserRouter>
-        </div>
-      </ConfigProvider>
-    </QueryProvider>
-
-  );
+    <HelmetProvider>
+      <ReduxProvider store={store}>
+        <PersistGate loading={<Loading />} persistor={persistor}>
+          <AuthProvider>
+            <QueryClientProvider client={reactQueryClient}>
+              <ConfigProvider theme={themeConfig}>
+                <BrowserRouter>
+                  <Router />
+                </BrowserRouter>
+              </ConfigProvider>
+            </QueryClientProvider>
+          </AuthProvider>
+        </PersistGate>
+      </ReduxProvider>
+    </HelmetProvider>
+  )
 }
 
-export default App;
+export default App
