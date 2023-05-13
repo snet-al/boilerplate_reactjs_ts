@@ -3,8 +3,6 @@ import { Navigate, useLocation } from 'react-router-dom'
 
 import useAuth from '../hooks/useAuth'
 
-import PrivateLayout from '../layouts/PrivateLayout'
-
 interface PrivateGuardProps {
   children: ReactNode
 }
@@ -18,7 +16,7 @@ const PrivateGuard: FunctionComponent<PrivateGuardProps> = ({ children }) => {
     return <Navigate to="/login" state={{ from: location }} />
   }
 
-  return <PrivateLayout>{children}</PrivateLayout>
+  return <>{children}</>
 }
 
 export default PrivateGuard

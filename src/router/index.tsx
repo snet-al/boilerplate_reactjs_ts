@@ -12,7 +12,9 @@ const Router = () =>
       path: '/',
       element: (
         <PublicGuard>
-          <DashboardPage />
+          <PublicLayout>
+            <DashboardPage />
+          </PublicLayout>
         </PublicGuard>
       ),
       index: true,
@@ -21,7 +23,9 @@ const Router = () =>
       path: 'dashboard',
       element: (
         <PrivateGuard>
-          <DashboardPage />
+          <PrivateLayout>
+            <DashboardPage />
+          </PrivateLayout>
         </PrivateGuard>
       ),
     },
@@ -32,7 +36,9 @@ const Router = () =>
           path: 'login',
           element: (
             <PublicGuard>
-              <LoginPage />
+              <PublicLayout>
+                <LoginPage />
+              </PublicLayout>
             </PublicGuard>
           ),
           index: true,
@@ -41,7 +47,9 @@ const Router = () =>
           path: 'register',
           element: (
             <PublicGuard>
-              <RegisterPage />
+              <PublicLayout>
+                <RegisterPage />
+              </PublicLayout>
             </PublicGuard>
           ),
         },
@@ -61,8 +69,8 @@ const Router = () =>
 export default Router
 
 // Guest routes
-const LoginPage = Loadable(lazy(() => import('../pages/Auth/Login')))
-const RegisterPage = Loadable(lazy(() => import('../pages/Auth/Register')))
+const LoginPage = Loadable(lazy(() => import('../pages/Auth/LoginPage/LoginPage')))
+const RegisterPage = Loadable(lazy(() => import('../pages/Auth/RegisterPage/RegisterPage')))
 
 // Auth routes
 const DashboardPage = Loadable(lazy(() => import('../pages/Dashboard')))

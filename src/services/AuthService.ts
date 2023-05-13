@@ -1,9 +1,9 @@
-import { HttpClient } from '../http-client'
+import { HttpClient } from '../../client/http/http-client'
 
 import { User } from '../User/User.types'
 
-class AuthClient {
+class AuthService {
   authenticateUser = async () => await HttpClient.get<User>('/auth/user')
 }
 
-export default new AuthClient()
+export default new AuthService()
