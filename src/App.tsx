@@ -11,7 +11,7 @@ import { store, persistor } from './store/redux/index'
 
 import Router from './router'
 
-import Loading from './components/Loading'
+import Loading from './components/Loading/Loading'
 
 const themeConfig = {
   algorithm: theme.defaultAlgorithm,
