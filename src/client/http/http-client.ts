@@ -1,9 +1,9 @@
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 
-import { store } from '../../../store/redux'
-import { deleteUser } from '../../../store/redux/slices/auth'
+import { store } from '../../store/redux'
+import { deleteUser } from '../../store/redux/slices/auth'
 
-import { APP_URL, AXIOS_TIMEOUT_DURATION } from '../../../config'
+import { APP_URL, AXIOS_TIMEOUT_DURATION } from '../../config'
 
 const instance = axios.create({
   baseURL: APP_URL,

@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
 
-import { User } from '../../types/interfaces/User.interface'
+import { User } from '../../types/user'
 
-import AuthClient from '../../client/http/Auth/AuthClient'
+import AuthService from '../../services/AuthService'
 
-export const useAuthenticateQuery = () => useQuery<User, Error>('auth', AuthClient.authenticateUser)
+export const useAuthenticateQuery = () => useQuery<User, Error>('auth', AuthService.authenticateUser)

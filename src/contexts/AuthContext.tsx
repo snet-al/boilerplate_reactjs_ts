@@ -1,6 +1,6 @@
 import { createContext, FunctionComponent, ReactNode, useEffect, useMemo, useState } from 'react'
 
-import { User } from '../types/interfaces/User.interface'
+import { User } from '../types/user'
 
 interface AuthProviderProps {
   children: ReactNode
@@ -30,7 +30,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children }) => {
   const isAuthenticated = useMemo<boolean>(() => Boolean(user), [user])
 
   const authenticateUser = (user: Partial<User>) => {
-    setUser({ email: 'admin@app.com', password: 'password' })
+    //
   }
 
   const unAuthenticateUser = () => {

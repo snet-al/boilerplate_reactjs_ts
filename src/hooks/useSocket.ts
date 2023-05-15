@@ -1,15 +1,15 @@
-import { SocketClient } from '../services/client/socket/socket-client'
+import { SocketClient } from '../client/socket/socket-client'
 
-import { Message } from '../types/Message'
+import { Message } from '../types/message'
 import { useEffect, useRef } from 'react'
 
-export const useSocket = (event: string, calback?: (...args: Array<any>) => void) => {
+export const useSocket = (event: string, callback?: (...args: Array<any>) => void) => {
   useEffect(() => {
-    if (calback) {
-      SocketClient.on(event, calback)
+    if (callback) {
+      SocketClient.on(event, callback)
 
       return () => {
-        SocketClient.off(event, calback)
+        SocketClient.off(event, callback)
       }
     }
   }, [])
