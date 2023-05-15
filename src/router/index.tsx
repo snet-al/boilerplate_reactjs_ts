@@ -5,6 +5,8 @@ import PrivateGuard from '../guards/PrivateGuard'
 import PublicGuard from '../guards/PublicGuard'
 
 import Loadable from './Loadable'
+import PublicLayout from '../layouts/PublicLayout'
+import PrivateLayout from '../layouts/PrivateLayout'
 
 const Router = () =>
   useRoutes([
@@ -73,7 +75,7 @@ const LoginPage = Loadable(lazy(() => import('../pages/Auth/LoginPage/LoginPage'
 const RegisterPage = Loadable(lazy(() => import('../pages/Auth/RegisterPage/RegisterPage')))
 
 // Auth routes
-const DashboardPage = Loadable(lazy(() => import('../pages/Dashboard')))
+const DashboardPage = Loadable(lazy(() => import('../pages/Dashboard/Dashboard')))
 
 // Error routes
-const Error404Page = Loadable(lazy(() => import('../pages/Error404')))
+const Error404Page = Loadable(lazy(() => import('../pages/NotFound/NotFound')))
