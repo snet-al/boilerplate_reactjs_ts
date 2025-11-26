@@ -3,28 +3,18 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { Navigator } from './navigator';
 
-import {ConfigProvider, theme} from 'antd';
-import QueryProvider from './services/client/query-provider';
+import {ThemeProvider, createTheme} from '@mui/material';
 
 const App = () => {
   return (
 
-    <QueryProvider>
-      <ConfigProvider
-        theme={{
-          algorithm: theme.defaultAlgorithm,
-          token: {
-            colorPrimary: '#3d7cef',
-          },
-        }}
+      <ThemeProvider
+        theme={createTheme()}
       >
-        <div className="App">
-            <BrowserRouter>
-              <Navigator />
-            </BrowserRouter>
-        </div>
-      </ConfigProvider>
-    </QueryProvider>
+        <BrowserRouter>
+          <Navigator />
+        </BrowserRouter>
+      </ThemeProvider>
 
   );
 }

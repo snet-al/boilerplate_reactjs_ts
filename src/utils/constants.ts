@@ -1,4 +1,5 @@
-export const CART_KEY = 'pick-cart';
+export const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL ?? 'http://localhost:3000';
+export const AXIOS_TIMEOUT_DURATION = 10000;
 export const TOKEN = 'token';
 export const AUTH_TOKEN_KEY = 'auth_token';
 export const AUTH_PERMISSIONS = 'auth_permissions';
@@ -10,6 +11,7 @@ export const SHOPS_LIMIT = 20;
 export const RTL_LANGUAGES: ReadonlyArray<string> = ['ar', 'he'];
 export const PRODUCT_INITIAL_FETCH_LIMIT = 30;
 export const DEFAULT_LANGUAGE = process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE ?? 'en';
+export const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000';
 
 export function getDirection(language: string | undefined) {
   if (!language) {
