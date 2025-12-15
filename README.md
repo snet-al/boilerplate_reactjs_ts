@@ -36,6 +36,13 @@ Vite exposes env vars prefixed with `VITE_`. Common ones used in this repo:
 - `VITE_SOCKET_URL`
 - `VITE_DEFAULT_LANGUAGE`
 
+## UI library (shadcn/ui)
+
+This project follows the **shadcn/ui** approach for UI: reusable primitives built with **Tailwind** (and small utilities like `cn`) that live in the codebase (not a runtime component library).
+
+- Use components from `src/components/ui` when building new UI.
+- Follow the same patterns (variants via `cva`, class merging via `cn`) to keep styling consistent.
+
 ## Folder guide (read the README in each folder)
 
 Most `src/*` folders include a short `README.md` with definitions + rules. Start with:
