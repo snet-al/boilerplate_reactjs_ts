@@ -9,6 +9,7 @@ import { LoginUserInput } from '../../types/user'
 import { TOKEN } from '../../utils/constants'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../../components/ui/Card/Card'
 import { Alert, AlertDescription } from '../../components/ui/Alert/Alert'
+import { Label } from '../../components/ui/Label/Label'
 
 export const LoginPage = () => {
   const navigate = useNavigate()
@@ -74,15 +75,15 @@ export const LoginPage = () => {
         <CardContent>
           <form onSubmit={handleSubmit} noValidate>
             <div className="grid gap-4">
+              <Label>Username</Label>
               <Input
-                label="Username"
                 value={values.username}
                 onChange={handleChange('username')}
                 autoComplete="username"
                 required
               />
+              <Label>Password</Label>
               <Input
-                label="Password"
                 type="password"
                 value={values.password}
                 onChange={handleChange('password')}
