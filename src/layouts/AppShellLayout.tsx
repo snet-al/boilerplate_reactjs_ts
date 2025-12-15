@@ -1,5 +1,4 @@
 import React from 'react'
-import { Box, Toolbar } from '@mui/material'
 
 import { SideMenu, SideMenuItem } from '../components'
 
@@ -17,20 +16,12 @@ export const AppShellLayout: React.FC<AppShellLayoutProps> = ({
   menuWidth,
 }) => {
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
+    <div className="flex min-h-screen bg-muted/40">
       <SideMenu title={menuTitle} width={menuWidth} items={menuItems} />
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          padding: 3,
-          backgroundColor: '#f9fafb',
-        }}
-      >
-        <Toolbar />
+      <main className="flex-1 p-6">
         {children}
-      </Box>
-    </Box>
+      </main>
+    </div>
   )
 }
 

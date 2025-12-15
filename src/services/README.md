@@ -1,25 +1,14 @@
-## Services overview
+## `src/services`
 
-`src/services` centralizes domain-level API helpers. Each service wraps one or
-more endpoints and exposes typed methods that the rest of the app can call
-without knowing about HTTP details or third-party clients.
+This folder contains the app’s **API layer** (domain services).
 
-### Responsibilities
+Each service usually maps to a **backend entity / bounded context** (e.g. Auth, Users) and exposes typed methods that pages/modules can call without dealing with HTTP details.
 
-- Map domain use-cases (auth, users, etc.) to network calls.
-- Reuse shared infrastructure (`src/libs/http`, sockets, etc.) so networking is
-  configured consistently.
-- Provide typed responses and errors so callers can rely on TypeScript
-  contracts.
+## Rules when editing this folder
 
-### Rules / guidelines
-
-1. Services should remain stateless singletons (class instances or plain
-   objects) that expose functions returning Promises.
-2. Keep service methods lean: no UI logic or component state; just data access
-   and basic response mapping.
-3. Always use shared clients (`HttpClient`, `SocketClient`, etc.) rather than
-   instantiating new ones inside services.
-4. Group related endpoints in the same service (e.g., `AuthService`,
-   `UserService`); split when responsibilities diverge.
+- **One service per backend entity/context**: keep endpoints grouped by domain (Auth, User, etc.).
+- **Services call the shared client**: use `HttpClient` from `src/libs/http/http-client.ts` (don’t create new axios instances here).
+- **No UI/state in services**: services should only do data access + light mapping (no React state, navigation, toasts, etc.).
+- **Keep methods typed**: service methods should return typed data (use `src/types`).
+- **Export via the barrel**: add new services to `src/services/index.ts`.
 

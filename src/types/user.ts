@@ -1,31 +1,9 @@
 import { PaginatorInfo, QueryOptions } from './general';
 
 export interface User {
-  FirstName: string;
-  SecondName: string;
-  Shenime: string;
-  Status_user: boolean;
-  UserId: number;
-  UserName: string;
-  exp_date?: string;
-  district_name: string;
-  region_code: string;
-  region_name: string;
-  usr_birthdate: string;
-  usr_city: string;
-  usr_diploma: string;
-  usr_email: string;
-  usr_fax: string;
-  usr_gender: string;
-  usr_mobile: string;
-  usr_phone?: string;
-  usr_postcode: string;
-  usr_short: string;
-  usr_street: string;
-  usr_titile: string;
-  permissions: [];
-  role_ids: number[];
-  role_names: string[];
+  id: string;
+  name: string;
+  email: string;
 }
 
 export interface UpdateUserInput extends Partial<User> {

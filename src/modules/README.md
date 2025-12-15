@@ -1,31 +1,17 @@
-## Modules overview
+## `src/modules`
 
-`src/modules` houses feature-focused building blocks that sit between pages and
-low-level services. A module encapsulates everything a complex page or feature
-needs (components, hooks, forms, state, API glue) so the page can stay lean.
+This folder contains **feature modules** used by pages when a screen becomes too complex.
 
-Think of a module as the “engine room” for a page section—ideal when a page
-would otherwise become unwieldy (e.g., a 5-step create-account flow). Each step
-or logical slice can live inside the module while the page composes them.
+## When to create a module
 
-### When to create a module
+- A page has **complex business logic** (multi-step flows, heavy state, lots of branching).
+- Logic needs to be **shared** across multiple pages/screens.
+- You want a feature to expose a **clean, reusable API** (components/hooks) to pages.
 
-- A page has multiple steps or sub-flows (multi-step forms, dashboards with
-  widgets, etc.).
-- Domain logic or form state needs to be shared by multiple pages/routes.
-- You want to encapsulate a feature so the rest of the app imports a single,
-  well-defined API.
+## Rules when editing this folder
 
-### Rules / guidelines
-
-1. Modules expose only what a page needs (components, hooks, helpers) via an
-   `index.ts` barrel; keep internal implementation private.
-2. Keep modules united: if two features rarely overlap, separate them instead
-   of building a “mega module.”
-3. Place any module-specific services or state alongside the module, not in
-   global folders, unless they’re reused elsewhere.
-4. Keep React pages thin: pages should orchestrate layout, routing, and module
-  composition, delegating heavy logic to modules.
-5. Reuse UI primitives from `src/components/ui` to maintain consistent styling
-   across modules.
+- **Keep modules feature-scoped**: don’t create “mega modules” that mix unrelated features.
+- **Use services for API calls**: call APIs via `src/services` (don’t inline HTTP clients in modules).
+- **Reuse UI primitives**: prefer `src/components/ui` for consistent styling and behavior.
+- **Every Module has the same bussiness logic as a Page**
 

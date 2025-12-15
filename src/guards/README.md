@@ -1,25 +1,12 @@
-## Guards overview
+## `src/guards`
 
-`src/guards` contains route-level guard components that decide whether a child
-tree should render based on authentication status (or other global conditions).
-Use them alongside layouts/routes to centralize access control logic.
+This folder contains **route guards**: small components that decide whether a route tree can render (usually based on authentication) and otherwise redirect.
 
-### Components
+Guards are used by the router (`src/navigator`) to keep access control consistent across the app.
 
-- `PrivateGuard` – renders children only when `isLoggedIn()` is true; otherwise
-  redirects to `/login` (or a custom `redirectTo`).
-- `PublicGuard` – prevents authenticated users from visiting public routes by
-  redirecting them to `/` (or a custom `redirectTo`).
+## Rules when editing this folder
 
-### Rules / guidelines
-
-1. Guards must stay framework-specific but feature-agnostic: no data fetching or
-   module logic—only access checks and redirects.
-2. Accept `children` and optional `redirectTo` props so routes can override the
-   default destination.
-3. Prefer reusing helpers from `src/utils` (e.g., `isLoggedIn`) instead of
-   duplicating auth checks.
-4. Keep guard side effects minimal; use router state to pass along the origin
-   when redirecting.
-5. Export guards via `src/guards/index.ts` to provide a single import surface.
+- **Keep guards thin**: only access checks + redirects (no feature logic, no data fetching).
+- **Accept `children`**: guards wrap route trees and should render `children` when allowed.
+- **Export via the barrel**: expose guards from `src/guards/index.ts`.
 

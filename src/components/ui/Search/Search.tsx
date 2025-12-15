@@ -1,35 +1,37 @@
-import React from 'react';
-import MuiTextField, { TextFieldProps as MuiTextFieldProps } from '@mui/material/TextField';
+import React from 'react'
 
-export type SearchProps = MuiTextFieldProps & {
-  onSearch?: (value: string) => void;
-};
+import { cn } from '../../../libs/tailwind/merge-tailwind-classes'
+import { InputBase } from '../Input/InputBase'
+
+export type SearchProps = React.InputHTMLAttributes<HTMLInputElement> & {
+  onSearch?: (value: string) => void
+  fullWidth?: boolean
+}
 
 export const Search: React.FC<SearchProps> = ({
   onSearch,
-  variant = 'outlined',
   fullWidth = true,
   placeholder = 'Search...',
   onKeyDown,
+  className,
   ...rest
 }) => {
-  const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (event) => {
-    onKeyDown?.(event);
+  const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (event) => {
+    onKeyDown?.(event)
 
     if (event.key === 'Enter') {
-      onSearch?.((event.target as HTMLInputElement).value);
+      onSearch?.((event.target as HTMLInputElement).value)
     }
-  };
+  }
 
   return (
-    <MuiTextField
+    <InputBase
       type="search"
-      variant={variant}
-      fullWidth={fullWidth}
       placeholder={placeholder}
       onKeyDown={handleKeyDown}
+      className={cn(fullWidth ? 'w-full' : undefined, className)}
       {...rest}
     />
-  );
-};
+  )
+}
 

@@ -1,24 +1,13 @@
-## Pages overview
+## `src/pages`
 
-`src/pages` contains the top-level route components rendered by the router.
-Pages wire layouts, modules, and UI primitives together to deliver a complete
-screen. They orchestrate data fetching and module composition but should avoid
-heavy business logic themselves.
+This folder contains the app’s **route-level screens** (top-level components rendered by the router).
 
-### Responsibilities
+Pages should be **thin orchestrators**: they compose modules and UI components to form a full screen.
 
-- Define the route-level UI and decide which layout to use.
-- Compose modules (e.g., multi-step flows) and UI components.
-- Trigger data fetching via services and pass results to children.
-- Handle page-level side effects (title, meta tags) when needed.
+## Rules when editing this folder
 
-### Rules / guidelines
-
-1. Keep pages thin: delegate complex logic, forms, and state to modules or
-   services.
-2. Each page should live in its own folder (for co-located tests, styles, etc.);
-   export a single component from `index.tsx` or `Page.tsx`.
-4. Import UI primitives from `src/components/ui` to ensure consistent styling.
-5. Prefer declarative routing: pages should read params/query via router hooks
-   and pass them down rather than constructing URLs manually.
+- **One page = one folder**: keep each page in its own directory (co-locate styles/tests/helpers if needed).
+- **Pages can own API + rendering**: pages may call APIs (via `src/services`) and decide what to render / which components to use.
+- **Move complexity to modules**: when business logic becomes complex (multi-step flows, heavy state, shared domain logic), extract it into `src/modules` so the page stays readable.
+- **Use shared UI primitives**: prefer `src/components/ui` for consistent styling and behavior.
 
