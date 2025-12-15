@@ -1,51 +1,77 @@
-# Getting Started with Create React App
+# React + TypeScript Boilerplate
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was originally bootstrapped with **Create React App (CRA)** and is now set up to run with **Vite**.
 
-## Available Scripts
+## Requirements
 
-In the project directory, you can run:
+- Node.js + npm
 
-### `yarn start`
+## Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+npm install
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Commands
 
-### `yarn test`
+```bash
+# dev server
+npm run dev
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# production build
+npm run build
 
-### `yarn build`
+# preview production build
+npm run preview
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# tests
+npm run test
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Environment variables (Vite)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Vite exposes env vars prefixed with `VITE_`. Common ones used in this repo:
 
-## Default framework Antd
+- `VITE_APP_URL`
+- `VITE_SOCKET_URL`
+- `VITE_DEFAULT_LANGUAGE`
 
-We have included in the boilerplate the antd but this is a choise wich can be changed. We have create a 
-new branch `main-mui-template` with the same architechure but using MUI components
+## UI library (shadcn/ui)
 
-## Architechture of the app
+This project follows the **shadcn/ui** approach for UI: reusable primitives built with **Tailwind** (and small utilities like `cn`) that live in the codebase (not a runtime component library).
 
-To help in the organization of the code we have chosen some of the best practises and tryed to implement in some examples.
+- Use components from `src/components/ui` when building new UI.
+- Follow the same patterns (variants via `cva`, class merging via `cn`) to keep styling consistent.
 
+## Folder guide (read the README in each folder)
 
-- Structrure of the code is based on HTML5 principles which says that components should be semantic.
-  So we have organized the components in three levels:
-   - pages:
-     is the folder where rest the components which has knowledge of the structure and the layout of  the page.
-   - modules: 
-     is the folder where are the components related to data, this components might have a lot of ways to comunicate the data between them, like ContextProvider, store (redux, ...) etc. 
-   - components:
-     here are the components wchich are only web-components like, they dont have to know about the data in the app, they should only get the data through props.
+Most `src/*` folders include a short `README.md` with definitions + rules. Start with:
+
+- `src/navigator/README.md`
+- `src/pages/README.md`
+- `src/modules/README.md`
+- `src/services/README.md`
+- `src/store/README.md`
+- `src/libs/README.md`
+- `src/layouts/README.md`
+- `src/guards/README.md`
+- `src/components/README.md`
+
+### `src` structure (quick table)
+
+| Folder | Role | Description |
+| --- | --- | --- |
+| `assets` | **media** | Static assets (icons/images) imported by the app. |
+| `components` | **reusable** | Shared React components (including UI primitives) used across screens. |
+| `guards` | **access** | Route guard components for auth/redirect rules. |
+| `layouts` | **shells** | App layout wrappers that provide shared structure around pages. |
+| `libs` | **infrastructure** | Low-level wrappers for external clients (HTTP, sockets, etc.). |
+| `modules` | **features** | Feature modules used when a page becomes complex (state/flows/sub-components). |
+| `navigator` | **routing** | Central route table (React Router routes + guards + layout wiring). |
+| `pages` | **screens** | Route-level screens that call services and render the UI. |
+| `services` | **api** | Domain API services that map backend entities/contexts to typed methods. |
+| `store` | **state** | Global Redux Toolkit store for cross-route state. |
+| `types` | **typing** | Shared TypeScript types/interfaces used across the app. |
+| `utils` | **helpers** | Small pure helpers/constants reused across the codebase. |
 
 

@@ -1,1 +1,1 @@
-export * from './Form/Form'
+export * from './AccountDetails/AccountDetails'
